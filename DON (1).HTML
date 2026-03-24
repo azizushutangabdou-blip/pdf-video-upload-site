@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Educational Upload Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    .upload-section {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    input[type="file"] {
+      display: block;
+      margin-top: 10px;
+    }
+    .preview {
+      margin-top: 15px;
+    }
+    iframe, video {
+      width: 100%;
+      border: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Educational Upload Portal</h1>
+
+  <!-- PDF Upload -->
+  <div class="upload-section">
+    <h2>Upload PDF</h2>
+    <input type="file" id="pdfUpload" accept="application/pdf" />
+    <div class="preview" id="pdfPreview"></div>
+  </div>
+
+  <!-- Video Upload -->
+  <div class="upload-section">
+    <h2>Upload Video</h2>
+    <input type="file" id="videoUpload" accept="video/*" />
+    <div class="preview" id="videoPreview"></div>
+  </div>
+
+  <script>
+    // PDF Preview
+    document.getElementById('pdfUpload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const fileURL = URL.createObjectURL(file);
+        document.getElementById('pdfPreview').innerHTML =
+          `<iframe src="${fileURL}" height="400"></iframe>`;
+      }
+    });
+
+    // Video Preview
+    document.getElementById('videoUpload').addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const fileURL = URL.createObjectURL(file);
+        document.getElementById('videoPreview').innerHTML =
+          `<video controls height="300"><source src="${fileURL}"></video>`;
+      }
+    });
+  </script>
+
+</body>
+</html>
+
